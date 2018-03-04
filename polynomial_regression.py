@@ -33,7 +33,7 @@ lin_regressor.fit(X, y)
 
 # Fitting Polynomial Regression to the dataset
 from sklearn.preprocessing import PolynomialFeatures
-poly_regressor = PolynomialFeatures(degree = 2) # ^2
+poly_regressor = PolynomialFeatures(degree = 4) # ^2, (3, 4) степень(точность)
 X_poly = poly_regressor.fit_transform(X) # почему fit и transform??? l55 7:30
 # X_poly мы создали имкуственно polynomial ^2 данные из данных X
 # 1 3 9   1 4 16   1 5 25 ...
@@ -50,8 +50,11 @@ plt.ylabel('Salary')
 plt.show()
 
 # Visualising the Polynomial Regression results
+X_grid = np.arange(min(X), max(X), 0.1) # делаем новый X более частая сетка plt
+#сейяас  X_grid - вектор, нам нужна матрица, поэтому нужно .reshape
+X_grid = X_grid.reshape((len(X_grid), 1)) # создаем матрицу из ветора
 plt.scatter(X, y, color = 'red')
-plt.plot(X, lin_regressor_2.predict(poly_regressor.fit_transform(X)), color = 'blue')
+plt.plot(X_grid, lin_regressor_2.predict(poly_regressor.fit_transform(X_grid)), color = 'blue')
 # Важно!!! в .predict можно закинуть и X_poly, но при этом у нас данные будут
 # только для X_poly, так как нам нужен определенный формат данных,
 # и это не удобно, лучше взять 37 строку,
@@ -62,8 +65,11 @@ plt.ylabel('Salary')
 plt.show()
 
 
+# Predicting a new result with Linear Regression
+lin_regressor.predict(6.5)
 
-
+# Predicting a new result with Polynomial Regression
+lin_regressor_2.predict(poly_regressor.fit_transform(6.5))
 
 
 
