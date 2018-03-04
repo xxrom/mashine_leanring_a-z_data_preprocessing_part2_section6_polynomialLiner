@@ -41,6 +41,25 @@ lin_regressor_2 = LinearRegression() # используем обычную но�
 lin_regressor_2.fit(X_poly, y) # закидываем в линейную регрессию новые данные
 
 
+# Visualising the Linear Regression results
+plt.scatter(X, y, color = 'red')
+plt.plot(X, lin_regressor.predict(X), color = 'blue')
+plt.title('Truth or Bluff (Linear Regression)')
+plt.xlabel('Position level')
+plt.ylabel('Salary')
+plt.show()
+
+# Visualising the Polynomial Regression results
+plt.scatter(X, y, color = 'red')
+plt.plot(X, lin_regressor_2.predict(poly_regressor.fit_transform(X)), color = 'blue')
+# Важно!!! в .predict можно закинуть и X_poly, но при этом у нас данные будут
+# только для X_poly, так как нам нужен определенный формат данных,
+# и это не удобно, лучше взять 37 строку,
+# что бы можно было на ходу менять занчения X в трех местах
+plt.title('Truth or Bluff (Polynomial Regression)')
+plt.xlabel('Position level')
+plt.ylabel('Salary')
+plt.show()
 
 
 
